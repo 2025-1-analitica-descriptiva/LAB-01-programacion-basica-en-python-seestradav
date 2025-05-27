@@ -5,11 +5,10 @@ solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
 
-
 def pregunta_04():
     """
-    La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la
-    cantidad de registros por cada mes, tal como se muestra a continuación.
+    La columna 3 contiene una date en formato `YYYY-MM-DD`. Retorne la
+    cantidad de registros por cada month, tal como se muestra a continuación.
 
     Rta/
     [('01', 3),
@@ -26,3 +25,19 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    sums = {}
+
+    with open("files/input/data.csv", "r") as file:
+        for linea in file:
+            columns = linea.split("\t")
+            date = columns[2]  
+            month = date.split("-")[1] 
+            
+            if month in sums:
+                sums[month] += 1
+            else:
+                sums[month] = 1
+
+    return sorted(sums.items())
+
+pregunta_04()

@@ -27,3 +27,24 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    listas = []
+    with open("files/input/data.csv", "r", encoding="utf-8") as file:
+        for renglon in file:
+            linea = list(renglon.strip().split("\t"))
+            Pareja = (int(linea[1]), linea[0])
+            listas.append(Pareja)
+
+
+    secuencia = sorted(list(set(sorted(listas))))
+    numeros = {}
+    for numero, letra in secuencia:
+        if numero in numeros:
+                letras += letra
+                numeros[numero] = letras
+        else:
+                letras = [letra]
+                numeros[numero] = letras
+               
+    return list(numeros.items())
+
+pregunta_08()

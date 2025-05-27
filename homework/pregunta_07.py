@@ -5,7 +5,6 @@ solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
 
-
 def pregunta_07():
     """
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla
@@ -25,3 +24,19 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    asociados = {}
+    with open("files/input/data.csv", 'r') as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split('\t') 
+            letra = columnas[0] 
+            valor_columna_2 = int(columnas[1]) 
+            
+            if valor_columna_2 in asociados:
+                asociados[valor_columna_2].append(letra)
+            else:
+                asociados[valor_columna_2] = [letra]
+
+    resultado = sorted(asociados.items())
+    return resultado
+
+pregunta_07()
